@@ -1,3 +1,5 @@
 /.idea/
 /target/
 /B24-RestAssured.iml
+*.iml
+*.xml
