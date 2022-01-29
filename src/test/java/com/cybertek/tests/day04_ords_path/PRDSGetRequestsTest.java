@@ -13,6 +13,14 @@ public class PRDSGetRequestsTest {
     baseURI = ConfigurationReader.getProperty("ords.url");
 
     }
+
+    /**
+     * Given accept type is json
+     * When user send get request to /ords/hr/regions
+     * Status code should be 200
+     * Content type should be "application/json"
+     * And body should contain "Europe"
+     */
     @Test
     public void getAllRegionsTest(){
 
