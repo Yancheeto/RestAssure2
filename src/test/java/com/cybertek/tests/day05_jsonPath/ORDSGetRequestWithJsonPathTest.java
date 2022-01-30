@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import io.restassured.path.json.JsonPath;
 import static org.junit.jupiter.api.Assertions.*;
 import io.restassured.response.Response;
+
+import java.util.List;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
 public class ORDSGetRequestWithJsonPathTest extends ORDSTestBase {
@@ -54,5 +57,35 @@ public class ORDSGetRequestWithJsonPathTest extends ORDSTestBase {
         assertEquals(9000, salary);
     }
 
+    @DisplayName("Get ords/hr/employees and use json Path filters")
+    @Test
+    public void jsonPathFilterTest(){
+        Response response = given().accept(ContentType.JSON)
+                .when().get("/employees");
+        System.out.println("status code = "+ response.statusCode());
+      //  response.prettyPrint();
+        JsonPath json = response.jsonPath();
+        
+        //names of employees that work in department 90
+        List<String> empList = json.getList("items.findAll{it.department_id==90}.first_name");
+        System.out.println("empList = " + empList);
 
+        //names of employees who are IT_PROG
+        List<String> itPrgrsList = json.getList("items.findAll{it.job_id=='IT_PROG'}.first_name");
+        System.out.println("itPrgrsList = " + itPrgrsList);
+
+
+        //emp ids of Employees whose salary is more than 5000
+        List<Integer>empIds = json.getList("items.findAll{it.salary>=5000}.employee_id");
+        System.out.println("empIds = " + empIds);
+
+        System.out.println(empIds.size());
+
+        //find the person firstname with maximum salary
+        //max, min
+
+        String firstNameMaxSalary = json.getString("items.max{it.salary}.first_name");
+        System.out.println("firstNameMaxSalary = " + firstNameMaxSalary);
+
+}
 }
