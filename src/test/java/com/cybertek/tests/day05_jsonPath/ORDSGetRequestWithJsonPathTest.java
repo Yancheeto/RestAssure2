@@ -6,7 +6,7 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import io.restassured.path.json.JsonPath;
-
+import static org.junit.jupiter.api.Assertions.*;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
