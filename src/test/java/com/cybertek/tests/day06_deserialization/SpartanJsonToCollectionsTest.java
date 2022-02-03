@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpartanJsonToCollectionsTest extends SpartanTestBase {
@@ -44,6 +45,25 @@ public class SpartanJsonToCollectionsTest extends SpartanTestBase {
         expected.put("phone", 9393139934L);
 
             assertEquals(expected, spartanMap);
+    }
+
+
+    @Test
+    public void allSpartansToMapListTest(){
+        Response response = given().accept(ContentType.JSON)
+                .when().get("/api/spartans");
+        List<Map<String, Object>>spartansList = response.as(List.class);
+        System.out.println("spartansList = " + spartansList);
+
+        System.out.println("first spartan info = " + spartansList.get(0));
+        System.out.println("second spartan info =" + spartansList.get(1));
+        System.out.println("third spartan info =" + spartansList.get(2).get("id"));
+
+           for ( Map<String, Object> eachSpartan: spartansList ){
+               System.out.println(eachSpartan.get("name"));  //will get all the spartans names
+           }
+
+           spartansList.forEach(eachSp-> System.out.println(eachSp.get("id")));     //with lambda
     }
 
 
