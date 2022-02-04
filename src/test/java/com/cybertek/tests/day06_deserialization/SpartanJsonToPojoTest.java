@@ -1,6 +1,6 @@
 package com.cybertek.tests.day06_deserialization;
 
-import com.cybertek.tests.POJO.Spartan;
+import com.cybertek.tests.pojo.Spartan;
 import com.cybertek.tests.SpartanTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

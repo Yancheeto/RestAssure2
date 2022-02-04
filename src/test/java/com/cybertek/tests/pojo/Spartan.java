@@ -1,4 +1,4 @@
-package com.cybertek.tests.POJO;
+package com.cybertek.tests.pojo;
 
 import lombok.Data;
 
