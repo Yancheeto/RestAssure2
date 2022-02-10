@@ -53,7 +53,6 @@ public class ORDSPostPutDeleteRegionTest extends ORDSTestBase {
         assertEquals(regionRequestMap.get("region_id"), regionResponseMap.get("region_id"));
         assertEquals(regionRequestMap.get("region_name"), regionResponseMap.get("region_name"));
 
-
 //send a get request with region_id and verify it matches the post request map data
         Map<String, Object> getRequestMap = given().accept(ContentType.JSON)
                 .when().get("/regions/"+regionId)
@@ -67,12 +66,8 @@ public class ORDSPostPutDeleteRegionTest extends ORDSTestBase {
         assertEquals(regionRequestMap.get("region_id"), getRequestMap.get("region_id"));
         assertEquals(regionRequestMap.get("region_name"), getRequestMap.get("region_name"));
 
-
-
     }
-    
     public static void deleteRegion(int regionId){
-
         delete("/regions/" + regionId);
 
     }
